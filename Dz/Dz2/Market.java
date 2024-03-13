@@ -7,70 +7,78 @@ package Dz.Dz2;
 // В методе update() сначала извлекается первый заказ из очереди методом deliverOrder(). Если заказ был извлечен успешно (не равен null), то происходит его обработка. Если очередь заказов пуста, выводится сообщение о том, что заказов для обработки нет.
 
 
+// QueueBehaviour<T> и MarketBehaviour<T> - это интерфейсы, которые определяют поведение для работы с очередью и магазином соответственно. Они содержат абстрактные методы, которые должны быть реализованы в классе Market.
+// Market<T> - это класс, который реализует оба интерфейса и представляет собой магазин. Он содержит внутреннюю очередь для хранения заказов.
+// enqueue(T element) и dequeue() - это методы интерфейса QueueBehaviour, которые реализуют добавление и удаление элементов из очереди.
+// acceptOrder(T order) и deliverOrder() - это методы интерфейса MarketBehaviour, которые реализуют принятие и отдачу заказов.
+// update() - это метод, который обновляет состояние магазина. В данном примере метод просто выводит сообщение о выполнении обновления, но его можно расширить для реального обновления состояния магазина, такого как обработка заказов или организация доставки.
+// В методе main представлен пример использования класса Market, где создается экземпляр класса, принимаются и отдаются заказы, а затем вызывается метод обновления состояния магазина.
+
+
 import java.util.LinkedList;
 import java.util.Queue;
 
-// Интерфейс для имитации работы очереди
-interface QueueBehaviour {
-    void enqueue(Object person); // Метод для добавления элемента в очередь
-    Object dequeue(); // Метод для извлечения элемента из очереди
+// Интерфейс, определяющий поведение очереди
+interface QueueBehaviour<T> {
+    void enqueue(T element); // Метод для добавления элемента в очередь
+    T dequeue(); // Метод для удаления элемента из очереди
 }
 
-// Интерфейс для управления заказами в магазине
-interface MarketBehaviour {
-    void acceptOrder(Object order); // Метод для принятия заказа
-    Object deliverOrder(); // Метод для доставки заказа
+// Интерфейс, определяющий поведение рынка
+interface MarketBehaviour<T> {
+    void acceptOrder(T order); // Метод для принятия заказа
+    T deliverOrder(); // Метод для отдачи заказа
 }
 
-public class Market implements QueueBehaviour, MarketBehaviour {
-    private Queue<Object> queue = new LinkedList<>(); // Очередь клиентов
-    private Queue<Object> orders = new LinkedList<>(); // Очередь заказов
+// Класс Market, который реализует интерфейсы QueueBehaviour и MarketBehaviour
+public class Market<T> implements QueueBehaviour<T>, MarketBehaviour<T> {
+    private Queue<T> queue; // Очередь заказов
 
-    // Метод для добавления человека в очередь
-    @Override
-    public void enqueue(Object person) {
-        queue.add(person);
+    public Market() {
+        this.queue = new LinkedList<>(); // Создаем пустую очередь
     }
 
-    // Метод для удаления человека из очереди
+    // Метод для добавления элемента в очередь
     @Override
-    public Object dequeue() {
-        return queue.poll();
+    public void enqueue(T element) {
+        queue.add(element); // Добавляем элемент в конец очереди
+    }
+
+    // Метод для удаления элемента из очереди
+    @Override
+    public T dequeue() {
+        return queue.poll(); // Удаляем и возвращаем первый элемент из очереди
     }
 
     // Метод для принятия заказа
     @Override
-    public void acceptOrder(Object order) {
-        orders.add(order);
+    public void acceptOrder(T order) {
+        enqueue(order); // Добавляем заказ в очередь
     }
 
-    // Метод для доставки заказа
+    // Метод для отдачи заказа
     @Override
-    public Object deliverOrder() {
-        return orders.poll();
+    public T deliverOrder() {
+        return dequeue(); // Удаляем и возвращаем заказ из очереди
     }
 
-    // Метод для обновления состояния магазина (принимает и отдает заказы)
+    // Метод для обновления состояния магазина
     public void update() {
-        // В данном примере обновление состояния магазина заключается в обработке первого заказа из очереди
-        Object order = deliverOrder();
-        if (order != null) {
-            // Обработка заказа
-            System.out.println("Заказ обработан: " + order.toString());
-        } else {
-            System.out.println("Нет заказов для обработки.");
-        }
+        // Здесь можно добавить логику обновления состояния магазина,
+        // например, обработку заказов, организацию доставки и т.д.
+        // В данном примере метод просто выводит сообщение о выполнении обновления.
+        System.out.println("Market state updated.");
     }
 
-    // Метод для получения текущего размера очереди клиентов
-    public int getQueueSize() {
-        return queue.size();
-    }
+    // Пример использования класса Market
+    public static void main(String[] args) {
+        Market<String> market = new Market<>(); // Создаем экземпляр класса Market
 
-    // Метод для получения текущего размера очереди заказов
-    public int getOrdersSize() {
-        return orders.size();
-    }
+        market.acceptOrder("Order 1"); // Принимаем заказ
+        market.acceptOrder("Order 2"); // Принимаем еще один заказ
 
-    // Другие методы и свойства магазина могут быть добавлены здесь
+        System.out.println("Delivering order: " + market.deliverOrder()); // Отдаем заказ
+
+        market.update(); // Обновляем состояние магазина
+    }
 }
