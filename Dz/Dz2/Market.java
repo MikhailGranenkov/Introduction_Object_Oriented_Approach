@@ -67,17 +67,17 @@ public class Market<T> implements QueueBehaviour<T>, MarketBehaviour<T> {
         // Здесь можно добавить логику обновления состояния магазина,
         // например, обработку заказов, организацию доставки и т.д.
         // В данном примере метод просто выводит сообщение о выполнении обновления.
-        System.out.println("Market state updated.");
+        System.out.println("Состояние магазина обновлено.");
     }
 
     // Пример использования класса Market
     public static void main(String[] args) {
         Market<String> market = new Market<>(); // Создаем экземпляр класса Market
 
-        market.acceptOrder("Order 1"); // Принимаем заказ
-        market.acceptOrder("Order 2"); // Принимаем еще один заказ
+        market.acceptOrder("Заказ 1"); // Принимаем заказ
+        market.acceptOrder("Заказ 2"); // Принимаем еще один заказ
 
-        System.out.println("Delivering order: " + market.deliverOrder()); // Отдаем заказ
+        System.out.println("Доставка заказа: " + market.deliverOrder()); // Отдаем заказ
 
         market.update(); // Обновляем состояние магазина
     }

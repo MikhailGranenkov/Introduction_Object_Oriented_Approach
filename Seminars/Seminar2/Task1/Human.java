@@ -54,10 +54,10 @@ public class Human extends Actor implements ActorBehaviour {
     @Override
     public void act() {
         if (isReadyToOrder() && !hasOrdered()) {
-            System.out.println(getName() + " is ready to order.");
+            System.out.println(getName() + " готов к заказу.");
             setHasOrdered(true);
         } else {
-            System.out.println(getName() + " is waiting.");
+            System.out.println(getName() + " ожидает.");
         }
     }
 }

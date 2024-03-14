@@ -1,5 +1,13 @@
 package Dz.Dz3;
 
+
+// Создать класс Поток содержащий в себе список УчебныхГрупп и реализующий интерфейс Iterator
+// Создать класс StreamComparator, реализующий сравнение количества групп входящих в Поток
+// Создать класс ПотокСервис, добавив в него метод сортировки списка потоков, используя созданный StreamComparator
+// Модифицировать класс Контроллер, добавив в него созданный сервис
+// Модифицировать класс Контроллер, добавив в него метод сортирующий список потоков, путем вызова созданного сервиса
+
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -109,3 +117,50 @@ public class Controller {
     }
 }
 
+
+
+// Создать класс Поток, содержащий в себе список УчебныхГрупп и реализующий интерфейс Iterable;
+// Создать класс StreamComparator, реализующий сравнение количества групп, входящих в Поток;
+
+// import java.util.ArrayList;
+// import java.util.Comparator;
+// import java.util.Iterator;
+
+// // Класс УчебнаяГруппа
+// class StudentGroup {
+//     private String name;
+
+//     // Конструктор класса УчебнаяГруппа
+//     public StudentGroup(String name) {
+//         this.name = name;
+//     }
+
+//     // Геттер для имени учебной группы
+//     public String getName() {
+//         return name;
+//     }
+// }
+
+// // Класс Поток, содержащий в себе список УчебныхГрупп и реализующий интерфейс Iterable
+// class Stream implements Iterable<StudentGroup> {
+//     private ArrayList<StudentGroup> groups;
+
+//     // Конструктор класса Поток
+//     public Stream(ArrayList<StudentGroup> groups) {
+//         this.groups = groups;
+//     }
+
+//     // Реализация метода iterator() интерфейса Iterable
+//     @Override
+//     public Iterator<StudentGroup> iterator() {
+//         return groups.iterator();
+//     }
+// }
+
+// // Класс StreamComparator, реализующий сравнение количества групп, входящих в Поток
+// class StreamComparator implements Comparator<Stream> {
+//     @Override
+//     public int compare(Stream s1, Stream s2) {
+//         return Integer.compare(s1.groups.size(), s2.groups.size());
+//     }
+// }

@@ -82,21 +82,21 @@ class Main {
 
         // Создаем список продуктов
         List<Product> products = new ArrayList<>();
-        products.add(new Product("Coke", 1.5));
-        products.add(new Product("Chips", 2.0));
-        products.add(new Product("Chocolate", 1.0));
+        products.add(new Product("Кола", 1.5));
+        products.add(new Product("Чипсы", 2.0));
+        products.add(new Product("Шоколад", 1.0));
 
         // Инициализируем продукты в торговом автомате
         vendingMachine.initProducts(products);
 
         // Получаем продукт по имени
-        String productName = "Chips";
+        String productName = "Чипсы";
         Product product = vendingMachine.getProduct(productName);
 
         if (product != null) {
-            System.out.println("Product found: " + product.getName() + ", Price: $" + product.getPrice());
+            System.out.println("Продукт найден: " + product.getName() + ", Цена: руб." + product.getPrice());
         } else {
-            System.out.println("Product not found: " + productName);
+            System.out.println("Продукт не найден: " + productName);
         }
     }
 }

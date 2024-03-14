@@ -105,21 +105,21 @@ class Main {
 
         // Создаем список торговых автоматов
         List<VendingMachine> vendingMachines = new ArrayList<>();
-        vendingMachines.add(new VendingMachine("Coke", 1.5));
-        vendingMachines.add(new VendingMachine("Chips", 2.0));
-        vendingMachines.add(new VendingMachine("Chocolate", 1.0));
+        vendingMachines.add(new VendingMachine("Кола", 1.5));
+        vendingMachines.add(new VendingMachine("Чипсы", 2.0));
+        vendingMachines.add(new VendingMachine("Шоколад", 1.0));
 
         // Инициализируем торговые автоматы в менеджере
         manager.setVendingMachines(vendingMachines);
 
         // Получаем торговый автомат по имени
-        String vendingMachineName = "Chips";
+        String vendingMachineName = "Чипсы";
         VendingMachine vendingMachine = manager.getVendingMachine(vendingMachineName);
 
         if (vendingMachine != null) {
-            System.out.println("Vending machine found: " + vendingMachine.getName() + ", Price: $" + vendingMachine.getPrice());
+            System.out.println("Торговый автомат обнаружен: " + vendingMachine.getName() + ", Цена: руб." + vendingMachine.getPrice());
         } else {
-            System.out.println("Vending machine not found: " + vendingMachineName);
+            System.out.println("Торговый автомат не обнаружен: " + vendingMachineName);
         }
     }
 }
